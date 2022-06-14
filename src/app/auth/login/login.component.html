@@ -1,0 +1,45 @@
+<section class="login-form">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="20px"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- * Email Field -->
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Your email"
+        formControlName="email"
+      />
+      <!-- ? Email hint helper text -->
+      <mat-hint>Email must have the right format</mat-hint>
+      <!-- ? Email error helper texts -->
+      <mat-error *ngIf="checkValidity('email')">
+        {{ handleHelperTexts("email") }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- * Password Field -->
+    <mat-form-field hintLabel="All passwords are at least 4 chars long">
+      <input
+        type="email"
+        matInput
+        placeholder="Your password"
+        formControlName="password"
+      />
+      <!-- ? Password hint helper text -->
+      <mat-hint align="end"
+        >{{ loginForm.get("password").value?.length }} / 4</mat-hint
+      >
+      <!-- ? Password error helper texts -->
+      <mat-error *ngIf="checkValidity('password')">
+        {{ handleHelperTexts("password") }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">Submit</button>
+  </form>
+</section>

@@ -1,0 +1,27 @@
+mat-form-field {
+  width: 300px;
+}
+
+/* Demo */
+#container {
+  display: flex;
+  width: 100%;
+}
+
+.child {
+  flex: 1;
+  height: 200px;
+  width: 200px;
+}
+
+#child1 {
+  background-color: crimson;
+}
+
+#child2 {
+  background-color: turquoise;
+}
+
+#child3 {
+  background-color: palegreen;
+}

@@ -1,0 +1,79 @@
+<section class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <!-- * Email Input -->
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Your email"
+        formControlName="email"
+      />
+      <mat-error
+        *ngIf="
+          !signupForm.get('email').valid && signupForm.get('email').touched
+        "
+      >
+        <span *ngIf="signupForm.get('email').errors['required']"
+          >Email is required</span
+        >
+        <span *ngIf="signupForm.get('email').errors['email']"
+          >Invalid email format</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <!-- * Password Input -->
+    <mat-form-field hintLabel="Should be at least 4 chars long">
+      <input
+        type="password"
+        matInput
+        placeholder="Your password"
+        formControlName="password"
+      />
+      <mat-hint align="end">
+        {{ signupForm.get("password").value?.length }} / 4
+      </mat-hint>
+      <mat-error
+        *ngIf="
+          !signupForm.get('password').valid &&
+          signupForm.get('password').touched
+        "
+      >
+        <span *ngIf="signupForm.get('password').errors['required']"
+          >Password is required</span
+        >
+        <span *ngIf="signupForm.get('password').errors['minlength']"
+          >Password must be at least 4 chars long</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <!-- * Birthdate Input -->
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Your birthdate"
+        [matDatepicker]="birthdate"
+        [max]="maxDate"
+        formControlName="birthdate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="birthdate"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #birthdate></mat-datepicker>
+    </mat-form-field>
+
+    <!-- * Checkbox Input -->
+    <mat-checkbox formControlName="terms" color="primary"
+      >Agree to Terms and Conditions.</mat-checkbox
+    >
+    <button mat-raised-button color="primary" [disabled]="!signupForm.valid">Submit</button>
+  </form>
+</section>
+
+<div id="container">
+  <div class="child" id="child1"></div>
+  <div class="child" id="child2"></div>
+  <div class="child" id="child3"></div>
+</div>
